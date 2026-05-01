@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Rules;
 
 use App\Models\Team;
@@ -22,7 +24,7 @@ class UniqueTeamInvitation implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $email = strtolower($value);
+        $email = strtolower((string) $value);
 
         $isMember = $this->team->members()
             ->whereRaw('LOWER(email) = ?', [$email])

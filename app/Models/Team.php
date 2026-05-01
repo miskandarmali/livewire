@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Concerns\GeneratesUniqueTeamSlugs;
@@ -11,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Override;
 
 #[Fillable(['name', 'slug', 'is_personal'])]
 class Team extends Model
@@ -21,6 +24,7 @@ class Team extends Model
     /**
      * Bootstrap the model and its traits.
      */
+    #[Override]
     protected static function boot(): void
     {
         parent::boot();
@@ -86,6 +90,7 @@ class Team extends Model
      *
      * @return array<string, string>
      */
+    #[Override]
     protected function casts(): array
     {
         return [
@@ -96,6 +101,7 @@ class Team extends Model
     /**
      * Get the route key for the model.
      */
+    #[Override]
     public function getRouteKeyName(): string
     {
         return 'slug';

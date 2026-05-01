@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Enums\TeamRole;
@@ -9,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
+use Override;
 
 #[Fillable(['team_id', 'email', 'role', 'invited_by', 'expires_at', 'accepted_at'])]
 class TeamInvitation extends Model
@@ -19,6 +22,7 @@ class TeamInvitation extends Model
     /**
      * Bootstrap the model and its traits.
      */
+    #[Override]
     protected static function boot(): void
     {
         parent::boot();
@@ -79,6 +83,7 @@ class TeamInvitation extends Model
      *
      * @return array<string, string>
      */
+    #[Override]
     protected function casts(): array
     {
         return [
@@ -91,6 +96,7 @@ class TeamInvitation extends Model
     /**
      * Get the route key for the model.
      */
+    #[Override]
     public function getRouteKeyName(): string
     {
         return 'code';

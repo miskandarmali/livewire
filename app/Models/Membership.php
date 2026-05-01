@@ -1,23 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Enums\TeamRole;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Override;
 
 #[Fillable(['team_id', 'user_id', 'role'])]
+#[Table(name: 'team_members')]
 class Membership extends Pivot
 {
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'team_members';
-
     /**
      * Indicates if the IDs are auto-incrementing.
      *
@@ -50,6 +48,7 @@ class Membership extends Pivot
      *
      * @return array<string, string>
      */
+    #[Override]
     protected function casts(): array
     {
         return [
